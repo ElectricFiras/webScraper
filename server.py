@@ -11,8 +11,13 @@ print ('hi there you\'re here')
 
 
 @app.route('/hello', methods=['GET', 'POST'])
-def summary():
-    return 'd'
+def index():
+  response = requests.get('http://www.purplemath.com/')
+  print(response.text)
+  httt = lxml.html.fromstring(response.text)
+  htttTitle = httt.xpath('//title')[0]
+  print("title: ", htttTitle.text_content())
+  return response.text
 
 # def get_year_urls():
 #     start_url = 'http://www.un.org/en/sc/documents/resolutions/'
