@@ -12,12 +12,24 @@ print ('hi there you\'re here')
 
 @app.route('/hello', methods=['GET', 'POST'])
 def index():
-  response = requests.get('http://www.purplemath.com/')
+  response = requests.get('http://www.mathhelp.com/intermediate-algebra-help/')
   print(response.text)
   httt = lxml.html.fromstring(response.text)
-  htttTitle = httt.xpath('//title')[0]
-  print("title: ", htttTitle.text_content())
-  return response.text
+  htttTitle = httt.xpath('//h5')
+  links = httt.xpath('//a')
+  print("title: ", htttTitle)
+  print ("links: ", links)
+  out = []
+  linkes = []
+  send = []
+  for title in htttTitle:
+    # we use this if just in case some <a> tags lack an href attribute
+    out.append(title.text_content())
+  for link in links:
+    linkes.append(lxml.html.tostring(link))
+  send.append(out)
+  send.append(linkes)
+  return jsonify(send)
 
 # def get_year_urls():
 #     start_url = 'http://www.un.org/en/sc/documents/resolutions/'

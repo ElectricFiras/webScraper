@@ -22,6 +22,20 @@
   font-size: large;
 }
 
+.title {
+  font-weight: bold;
+  font-size: 20px;
+  text-align: left;
+  margin-left: 5px;
+}
+
+.subTitle {
+  font-weight: normal;
+  font-size: 18px;
+  text-align: left;
+  margin-left: 20px;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
