@@ -4,11 +4,50 @@ import time
 from flask import Flask, Response, request, render_template, jsonify
 import requests
 import lxml.html
+import mysql.connector as mariadb
+
+mariadb_connection = mariadb.connect(user='firas', password='201095', database='pythUsers')
+
+cursor = mariadb_connection.cursor()
 
 app = Flask(__name__, static_url_path='', static_folder='build')
 app.add_url_rule('/', 'root', lambda: app.send_static_file('index.html'))
 print ('hi there you\'re here')
 
+@app.route('/login', methods = ['GET', 'POST'])
+def login():
+  if request.method == 'POST':
+    data = json.loads(request.data)
+    print("data :", data['username'])
+    compare = data['username']
+    password = data['password']
+    cursor.execute("SELECT username FROM users WHERE username=%s", (compare,))
+    for username in cursor:
+          for x in username:
+               if compare == x:
+                  return 'Hellow' 
+    cursor.execute("INSERT INTO users (username,password) VALUES (%s,%s)", (compare, password))
+    mariadb_connection.commit()
+    return 'Hi'
+  if request.method == 'GET':
+    print ('params: ', request.args['username'])
+    data = request.args
+    username = data['username']
+    compare = data['password']
+    print(username)
+    try:
+      cursor.execute("SELECT password FROM users WHERE username=%s", (username,))
+    except mariadb.Error as error:
+      print("Error: {}".format(error));
+      
+    print('cursor', cursor)
+    for password in cursor:
+        for x in password:
+          print('password', x)
+          print(compare == x)
+          if compare == x:
+              return 'Hi'
+  return 'no'
 
 @app.route('/hello', methods=['GET', 'POST'])
 def index():
@@ -76,4 +115,4 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(port=int(os.environ.get("PORT", 3000)), debug=True, passthrough_errors=False  )
+    app.run()
