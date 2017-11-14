@@ -11,7 +11,6 @@ enum34==1.1.6
 Flask==0.12.2
 Flask-MySQL==1.4.0
 gunicorn==19.7.1
-gyp==0.1
 html5lib==0.999999999
 idna==2.6
 incremental==16.10.1
