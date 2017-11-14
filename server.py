@@ -6,7 +6,7 @@ import requests
 import lxml.html
 import mysql.connector as mariadb
 
-mariadb_connection = mariadb.connect(user='firas', password='201095', database='pythUsers')
+mariadb_connection = mariadb.connect(user='lfgony45yqclfioi', password='cep0h3kxd6paulwn', database='pythUsers')
 
 cursor = mariadb_connection.cursor()
 
