@@ -47,7 +47,6 @@ class Home extends Component {
     this.setState({
       state : [res.data]
     })
-    this.shaow();
   }).catch((err) => {
     console.log('err', err)
   })
