@@ -30,7 +30,6 @@ numpy==1.12.1
 pyasn1==0.1.9
 pyasn1-modules==0.0.7
 pycrypto==2.6.1
-pygobject==3.22.0
 PyMySQL==0.7.11
 pyOpenSSL==16.2.0
 pyserial==3.2.1
