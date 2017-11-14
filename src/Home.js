@@ -19,11 +19,14 @@ class Home extends Component {
     this.click = this.click.bind(this)
     this.isLoading = false;
     this.fake = true;
+    this.show = false;
   }
 
   click() {
+
   axios.get('/hello').then((res) => {
     console.log(res.data)
+    this.show = true;
     this.isLoading = !this.isLoading
     for (var i = 0; i < res.data[0].length; i++){
       if (res.data[0][i].slice(0,7) === "CHAPTER"){
@@ -50,6 +53,7 @@ class Home extends Component {
   }).catch((err) => {
     console.log('err', err)
   })
+  this.forceUpdate()    
   }
 
   render() {
@@ -66,6 +70,7 @@ class Home extends Component {
     To get started, edit <code>src/App.js</code> and save to reload.
     </p>
     <button onClick = {this.click}>click</button>
+    {this.show ? (<img src = "https://i.imgflip.com/1zd99e.jpg" />): (<p/>)}
     <div>{this.subjects.map((sub) => 
     <li class = 'title'>{sub.title} {sub.sub.map((tit) => 
     <li class = 'subTitle'>{tit}</li>)}</li>)}</div>
