@@ -38,7 +38,7 @@ requests==2.18.4
 SecretStorage==2.3.1
 service-identity==16.0.0
 six==1.10.0
-Twisted==16.6.0
+Twisted==22.10.0
 urllib3==1.22
 virtualenv==15.1.0
 webencodings==0.5
